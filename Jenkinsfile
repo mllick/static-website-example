@@ -45,7 +45,7 @@ pipeline {
            steps {
               script {
                 sh '''
-                   curl -v http://172.17.0.1:5000 | grep -i "Dimension"
+                   curl -v http://172.17.0.1:${PORT_EXPOSED} | grep -i "Dimension"
                 '''
               }
            }
