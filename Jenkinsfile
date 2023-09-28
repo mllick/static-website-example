@@ -21,7 +21,6 @@ pipeline {
              steps {
                 script {
                   sh '''
-                     docker build -t ${ID_DOCKER}/$IMAGE_NAME:$IMAGE_TAG .
                      apt update 
                     # install git & docker
                     apt install git docker.io –y 
@@ -29,6 +28,9 @@ pipeline {
                     service docker start
                     # You can check the status of Docker using the following command:
                     service docker status
+                    
+                     docker build -t ${ID_DOCKER}/$IMAGE_NAME:$IMAGE_TAG .
+                     
                      '''
                 }
              }
