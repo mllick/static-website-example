@@ -20,7 +20,16 @@ pipeline {
              agent any
              steps {
                 script {
-                  sh 'docker build -t ${ID_DOCKER}/$IMAGE_NAME:$IMAGE_TAG .'
+                  sh '''
+                     docker build -t ${ID_DOCKER}/$IMAGE_NAME:$IMAGE_TAG .
+                     apt update 
+                    # install git & docker
+                    apt install git docker.io –y 
+                    # Once the installation is complete, you can start Jenkins using the following command:
+                    service docker start
+                    # You can check the status of Docker using the following command:
+                    service docker status
+                     '''
                 }
              }
         }
