@@ -22,7 +22,10 @@ pipeline {
            agent any
            steps {
               script {
-                sh 'docker build -t ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG .'
+                sh ''' 
+                RUN apt-get update && apt-get install -y docker
+                docker build -t ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG .
+                  '''
               }
            }
        }
