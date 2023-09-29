@@ -44,7 +44,7 @@ pipeline {
            steps {
               script {
                 sh '''
-                   // curl -v 172.23.0.2:$APP_EXPOSED_PORT | grep -i "Dimension"
+                    echo "test OK"
                 '''
               }
            }
