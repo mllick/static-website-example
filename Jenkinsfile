@@ -1,6 +1,6 @@
 pipeline {
      environment {
-       ID_DOCKER = "${ID_DOCKER_PARAMS}"
+       ID_DOCKER = "sarrlick"
        IMAGE_NAME = "staticwebsite"
        IMAGE_TAG = "latest"
        // PORT_EXPOSED = "80" à paraméter dans le job obligatoirement
@@ -10,8 +10,8 @@ pipeline {
        PROD_API_ENDPOINT = "ip10-0-0-4-ckad35kt654gqaevkecg-1993.direct.docker.labs.eazytraining.fr"
        PROD_APP_ENDPOINT = "ip10-0-0-4-ckad35kt654gqaevkecg-80.direct.docker.labs.eazytraining.fr"
        INTERNAL_PORT = "5000"
-       EXTERNAL_PORT = "${PORT_EXPOSED}"
-       CONTAINER_IMAGE = "${ID_DOCKER}/${IMAGE_NAME}:${IMAGE_TAG}"
+       EXTERNAL_PORT = 80
+       #CONTAINER_IMAGE = "${ID_DOCKER}/${IMAGE_NAME}:${IMAGE_TAG}"
 
      }
      agent none
@@ -20,7 +20,7 @@ pipeline {
              agent any
              steps {
                 script {
-                  sh 'docker build -t ${CONTAINER_IMAGE} . '
+                  sh 'docker build -t ${ID_DOCKER}/${IMAGE_NAME}:${IMAGE_TAG} . '
                 }
              }
         }
