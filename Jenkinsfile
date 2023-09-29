@@ -18,14 +18,15 @@ pipeline {
     }
     agent none
     stages {
+        stage('Initialize'){
+        def dockerHome = tool 'default-docker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
        stage('Build image') {
            agent any
            steps {
               script {
-                sh ''' 
-                RUN apt-get update && apt-get install -y docker
-                docker build -t ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG .
-                  '''
+                sh ' docker build -t ${DOCKERHUB_ID}/$IMAGE_NAME:$IMAGE_TAG . '
               }
            }
        }
